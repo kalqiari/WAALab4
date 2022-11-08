@@ -32,8 +32,8 @@ public class UserController {
 
 
     @GetMapping
-    public List<UserDto> allUsers(@RequestParam(value = "number_of_posts", required = false) Integer numberofPosts, @RequestParam(value = "title") String title) {
-        return numberofPosts == null && title == null ? userService.findAll() : userService.findUsersByNumberOfPostsAndTitle(numberofPosts, title);
+    public List<UserDto> allUsers(@RequestParam(value = "numberOfPosts", required = false) Integer numberOfPosts, @RequestParam(value = "title", required = false) String title) {
+        return numberOfPosts == null && title == null ? userService.findAll() : userService.findUsersByNumberOfPostsAndTitle(numberOfPosts, title);
     }
 
 
@@ -60,6 +60,7 @@ public class UserController {
     public void save(@RequestBody UserDto p) {
         userService.save(p);
     }
+
 
     @PutMapping("/{id}")
     public void update(@PathVariable("id") long userId, @RequestBody UserDto u) {
